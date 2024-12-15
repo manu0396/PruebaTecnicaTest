@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1012090937838",
+    "project_id": "pruebatecnicatest-df8c7",
+    "storage_bucket": "pruebatecnicatest-df8c7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1012090937838:android:91a2be432990f0eff72eff",
+        "android_client_info": {
+          "package_name": "com.example.pruebatecnicatest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012090937838-did3a5ksv7d3opm8u036mtcjl2l0tv22.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAt3KO5xMppqxZmPyfoIjnrlaSbonUUHds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012090937838-did3a5ksv7d3opm8u036mtcjl2l0tv22.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

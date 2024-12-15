@@ -74,6 +74,7 @@ dependencies {
     //hilt
     implementation(libs.androidx.hilt.compose)
     implementation(libs.androidx.hilt.fragment)
+    implementation(libs.firebase.auth.ktx)
     ksp(libs.androidx.hilt.compiler)
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
@@ -104,6 +105,13 @@ dependencies {
     implementation(libs.accompanist.coil)
     implementation(libs.accompanist.insets)
 
+    //Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.analytics)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -113,3 +121,5 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+// Apply the Google Services plugin (very important for Firebase to work)
+apply(plugin = "com.google.gms.google-services")

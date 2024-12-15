@@ -1,5 +1,6 @@
 [versions]
 agp = "8.6.1"
+googleServices = "4.4.2"
 kotlin = "2.0.21"
 coreKtx = "1.15.0"
 junit = "4.13.2"
@@ -19,9 +20,13 @@ accompanist = "0.15.0"
 ksp = "2.0.21-1.0.26"
 material = "1.7.5"
 okhttp = "4.12.0"
+firebase = "33.7.0"
+firebase-plugin = "4.4.2"
+firebaseAuthKtx = "23.1.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+google-services = { module = "com.google.gms:google-services", version.ref = "googleServices" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -61,6 +66,13 @@ accompanist-insets = { group = "com.google.accompanist", name = "accompanist-ins
 
 material-material = { group = "androidx.compose.material", name = "material", version.ref = "material"}
 
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase" }
+firebase-auth = { module = "com.google.firebase:firebase-auth"}
+firebase-database = { module = "com.google.firebase:firebase-database"}
+firebase-firestore = { module = "com.google.firebase:firebase-firestore"}
+firebase-analytics = { module = "com.google.firebase:firebase-analytics"}
+firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
@@ -69,3 +81,4 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+firebase = { id = "com.google.gms.google-services", version.ref = "firebase-plugin" }
