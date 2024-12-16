@@ -1,15 +1,19 @@
 package com.example.pruebatecnicatest.ui.nav
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.pruebatecnicatest.ui.screens.LoginScreen
+import com.example.pruebatecnicatest.ui.screens.TransactionDetailScreen
 import com.example.pruebatecnicatest.ui.screens.TransactionListScreen
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
 
@@ -26,9 +30,22 @@ fun AppNavigator() {
                 )
             }
         }
-        navigation(startDestination = Screens.Home.route, route = Screens.Dashboard.route) {
-            composable("transactions") { navBackStackEntry ->
+        navigation(startDestination = Screens.Transactions.route, route = Screens.Dashboard.route) {
+            composable(Screens.Transactions.route) { navBackStackEntry ->
                 TransactionListScreen(
+                    navController = navController,
+                    viewModel = navBackStackEntry.transactionListViewModel(navController)
+                )
+            }
+
+            composable(
+                route = Screens.DetailTransaction.route,
+                arguments = listOf(navArgument("id") { type = NavType.StringType})
+            ){ navBackStackEntry ->
+                val id = navBackStackEntry.arguments?.getString("id") ?: throw Exception("Missing id")
+                TransactionDetailScreen(
+                    navController = navController,
+                    id = id,
                     viewModel = navBackStackEntry.transactionListViewModel(navController)
                 )
             }

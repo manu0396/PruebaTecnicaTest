@@ -29,11 +29,9 @@ class TransactionViewModel @Inject constructor(
 
     private val _errorMessage = MutableStateFlow<String>("")
     val errorMessage: StateFlow<String> = _errorMessage
-    init {
-        fetchTransactions()
-    }
 
-    private fun fetchTransactions() {
+
+    fun fetchTransactions() {
         _showLoading.value = true
         viewModelScope.launch {
             when (val fetchedTransactions = getAllPostUseCase.getAllPost()) {
@@ -50,5 +48,13 @@ class TransactionViewModel @Inject constructor(
             }
 
         }
+    }
+
+    fun onDismiss(){
+        _showError.value = false
+    }
+
+    fun onConfirm(){
+        _showError.value = false
     }
 }
