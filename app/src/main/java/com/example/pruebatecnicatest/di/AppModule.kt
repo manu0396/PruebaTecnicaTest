@@ -1,7 +1,8 @@
 package com.example.pruebatecnicatest.di
 
+import com.example.pruebatecnicatest.BuildConfig.API_URL
 import com.example.pruebatecnicatest.data.remote.ApiService
-import com.example.pruebatecnicatest.data.remote.repository.PostRepository
+import com.example.pruebatecnicatest.data.remote.repository.RemoteRepository
 import com.example.pruebatecnicatest.domain.useCase.GetAllPostUseCase
 import com.google.firebase.auth.FirebaseAuth
 import dagger.Module
@@ -21,7 +22,7 @@ object AppModule {
 
     @Provides
     fun provideApiService(): ApiService = Retrofit.Builder()
-        .baseUrl("https://jsonplaceholder.typicode.com/")
+        .baseUrl(API_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(
             OkHttpClient.Builder()
@@ -34,8 +35,8 @@ object AppModule {
         .create(ApiService::class.java)
 
     @Provides
-    fun providePostRepository(): PostRepository{
-        return PostRepository(provideApiService())
+    fun providePostRepository(): RemoteRepository{
+        return RemoteRepository(provideApiService())
     }
 
     @Provides

@@ -13,6 +13,8 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.pruebatecnicatest.ui.screens.LoginScreen
+import com.example.pruebatecnicatest.ui.screens.SavePostsScreen
+import com.example.pruebatecnicatest.ui.screens.SettingsScreen
 import com.example.pruebatecnicatest.ui.screens.TransactionDetailScreen
 import com.example.pruebatecnicatest.ui.screens.TransactionListScreen
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
@@ -46,6 +48,19 @@ fun AppNavigator() {
                 TransactionDetailScreen(
                     navController = navController,
                     id = id,
+                    viewModel = navBackStackEntry.transactionListViewModel(navController)
+                )
+            }
+
+            composable(route = Screens.SavePost.route){ navBackStackEntry ->
+                SavePostsScreen(
+                    viewModel = navBackStackEntry.transactionListViewModel(navController),
+                    navController = navController
+                )
+            }
+            composable(route = Screens.Settings.route){ navBackStackEntry ->
+                SettingsScreen(
+                    navController = navController,
                     viewModel = navBackStackEntry.transactionListViewModel(navController)
                 )
             }

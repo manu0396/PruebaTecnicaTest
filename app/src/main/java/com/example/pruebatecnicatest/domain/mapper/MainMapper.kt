@@ -1,5 +1,6 @@
 package com.example.pruebatecnicatest.domain.mapper
 
+import com.example.pruebatecnicatest.data.local.models.PostData
 import com.example.pruebatecnicatest.data.remote.models.PostDTO
 import com.example.pruebatecnicatest.domain.models.PostDomain
 
@@ -20,6 +21,24 @@ object MainMapper {
             body = body,
             title = title,
             userId = userId.toIntOrNull() ?: 0 // Safely handle invalid integer cases
+        )
+    }
+
+    fun PostData.toDomain(): PostDomain {
+        return PostDomain(
+            id = id,
+            body = body,
+            title = title,
+            userId = userId
+        )
+    }
+
+    fun PostDomain.toData(): PostData {
+        return PostData(
+            id = id,
+            body = body,
+            title = title,
+            userId = userId
         )
     }
 }

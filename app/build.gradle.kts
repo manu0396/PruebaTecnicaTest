@@ -23,8 +23,8 @@ android {
             useSupportLibrary = true
         }
 
-        buildConfigField("String", "API_URL", "\"https://your-api-domain.com/api/v1/\"")
-        buildConfigField("String", "DB_NAME", "\"destinations\"")
+        buildConfigField("String", "API_URL", "\"https://jsonplaceholder.typicode.com/\"")
+        buildConfigField("String", "DB_NAME", "\"posts\"")
     }
 
     buildTypes {
