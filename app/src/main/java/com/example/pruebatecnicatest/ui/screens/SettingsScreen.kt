@@ -37,8 +37,10 @@ import androidx.navigation.NavController
 import com.example.pruebatecnicatest.R
 import com.example.pruebatecnicatest.ui.animations.TripleOrbitLoadingAnimation
 import com.example.pruebatecnicatest.ui.components.BottomNavigationBar
+import com.example.pruebatecnicatest.ui.nav.Screens
 import com.example.pruebatecnicatest.ui.theme.PruebaTecnicaTestTheme
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
+import com.google.firebase.auth.FirebaseAuth
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -143,6 +145,8 @@ fun SettingsScreen(
                         .padding(vertical = 8.dp, horizontal = 16.dp)
                         .clickable {
                             // Perform log out action
+                            FirebaseAuth.getInstance().signOut()
+                            navController.navigate(Screens.Login.route)
                             Toast
                                 .makeText(context, "Log Out", Toast.LENGTH_LONG)
                                 .show()
