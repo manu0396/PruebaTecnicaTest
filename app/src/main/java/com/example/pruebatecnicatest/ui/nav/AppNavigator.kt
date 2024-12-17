@@ -13,6 +13,7 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.pruebatecnicatest.ui.screens.LoginScreen
+import com.example.pruebatecnicatest.ui.screens.PrivacyScreen
 import com.example.pruebatecnicatest.ui.screens.SavePostsScreen
 import com.example.pruebatecnicatest.ui.screens.SettingsScreen
 import com.example.pruebatecnicatest.ui.screens.TransactionDetailScreen
@@ -62,6 +63,11 @@ fun AppNavigator() {
                 SettingsScreen(
                     navController = navController,
                     viewModel = navBackStackEntry.transactionListViewModel(navController)
+                )
+            }
+            composable(route = Screens.Privacy.route){ navBackStackEntry ->
+                PrivacyScreen(
+                    navController = navController
                 )
             }
         }

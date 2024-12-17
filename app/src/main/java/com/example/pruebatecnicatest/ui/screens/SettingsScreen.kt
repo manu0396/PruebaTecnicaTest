@@ -118,9 +118,7 @@ fun SettingsScreen(
                         .padding(vertical = 8.dp, horizontal = 16.dp)
                         .clickable {
                             // Navigate to Privacy screen
-                            Toast
-                                .makeText(context, "Privacy", Toast.LENGTH_LONG)
-                                .show()
+                            navController.navigate(Screens.Privacy.route)
                         }
                 ) {
                     Icon(

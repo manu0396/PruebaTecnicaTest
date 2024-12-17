@@ -14,4 +14,6 @@ sealed class Screens(val route: String) {
     object SavePost: Screens("savePost")
 
     object Settings: Screens("settings")
+
+    object Privacy: Screens("privacy")
 }
