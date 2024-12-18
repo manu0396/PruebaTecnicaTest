@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -30,7 +29,7 @@ import java.io.IOException
 fun PdfViewerWithZoom(assetName: String, modifier: Modifier) {
     val context = LocalContext.current
     val pdfBitmaps = remember { mutableStateListOf<Bitmap>() }
-    var scaleFactor by remember { mutableStateOf(1f) }
+    var scaleFactor by remember { mutableFloatStateOf(1f) }
 
     // Load PDF into bitmaps
     LaunchedEffect(assetName) {

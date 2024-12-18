@@ -15,6 +15,7 @@ import androidx.navigation.navArgument
 import com.example.pruebatecnicatest.ui.screens.LoginScreen
 import com.example.pruebatecnicatest.ui.screens.PrivacyScreen
 import com.example.pruebatecnicatest.ui.screens.SavePostsScreen
+import com.example.pruebatecnicatest.ui.screens.SettingsDetailScreen
 import com.example.pruebatecnicatest.ui.screens.SettingsScreen
 import com.example.pruebatecnicatest.ui.screens.TransactionDetailScreen
 import com.example.pruebatecnicatest.ui.screens.TransactionListScreen
@@ -68,6 +69,12 @@ fun AppNavigator() {
             composable(route = Screens.Privacy.route){ navBackStackEntry ->
                 PrivacyScreen(
                     navController = navController
+                )
+            }
+            composable(route = Screens.SettingsDetail.route){ navBackStackEntry ->
+                SettingsDetailScreen(
+                    navController = navController,
+                    viewModel = navBackStackEntry.transactionListViewModel(navController)
                 )
             }
         }

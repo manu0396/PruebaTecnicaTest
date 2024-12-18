@@ -1,6 +1,8 @@
 package com.example.pruebatecnicatest.ui.nav
 
 sealed class Screens(val route: String) {
+    object SettingsDetail : Screens("screens_detail")
+
     object Auth : Screens("auth")
 
     object Dashboard : Screens("dashboard")
