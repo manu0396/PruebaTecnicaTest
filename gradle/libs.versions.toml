@@ -23,6 +23,8 @@ okhttp = "4.12.0"
 firebase = "33.7.0"
 firebase-plugin = "4.4.2"
 firebaseAuthKtx = "23.1.0"
+camera = "1.4.1"
+barcode = "17.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -47,6 +49,11 @@ androidx-hilt-compiler = { group = "androidx.hilt", name = "hilt-compiler", vers
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidxRoom" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidxRoom" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
+androidx-camera-core = {group = "androidx.camera", name = "camera-core", version.ref = "camera"}
+androidx-camera-lifecycle = {group = "androidx.camera", name = "camera-lifecycle", version.ref = "camera"}
+androidx-camera-view = {group = "androidx.camera", name = "camera-view", version.ref = "camera"}
+androidx-camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "camera"}
+
 
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
@@ -72,6 +79,8 @@ firebase-database = { module = "com.google.firebase:firebase-database"}
 firebase-firestore = { module = "com.google.firebase:firebase-firestore"}
 firebase-analytics = { module = "com.google.firebase:firebase-analytics"}
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
+
+barcode-scanning = {module = "com.google.mlkit:barcode-scanning", version.ref = "barcode"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

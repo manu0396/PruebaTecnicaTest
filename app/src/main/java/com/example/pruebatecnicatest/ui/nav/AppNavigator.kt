@@ -73,8 +73,7 @@ fun AppNavigator() {
             }
             composable(route = Screens.SettingsDetail.route){ navBackStackEntry ->
                 SettingsDetailScreen(
-                    navController = navController,
-                    viewModel = navBackStackEntry.transactionListViewModel(navController)
+                    navController = navController
                 )
             }
         }

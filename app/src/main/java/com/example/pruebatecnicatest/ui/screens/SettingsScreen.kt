@@ -91,9 +91,7 @@ fun SettingsScreen(
                         .padding(vertical = 8.dp, horizontal = 16.dp)
                         .clickable {
                             // Navigate to User Settings screen
-                            Toast
-                                .makeText(context, "User settings", Toast.LENGTH_LONG)
-                                .show()
+                            navController.navigate(Screens.SettingsDetail.route)
                         }
                 ) {
                     Icon(
