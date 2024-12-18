@@ -8,7 +8,7 @@ import com.example.pruebatecnicatest.data.local.models.PostData
     entities = [
         PostData::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class LocalDatabase: RoomDatabase() {

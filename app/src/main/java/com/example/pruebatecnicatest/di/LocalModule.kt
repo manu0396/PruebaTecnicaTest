@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.pruebatecnicatest.BuildConfig
 import com.example.pruebatecnicatest.data.local.LocalDatabase
 import com.example.pruebatecnicatest.data.local.PostDao
+import com.example.pruebatecnicatest.data.local.migrations.Migrations
 import com.example.pruebatecnicatest.data.local.repository.LocalRepository
 import com.example.pruebatecnicatest.domain.useCase.DeleteLocalPostUseCase
 import com.example.pruebatecnicatest.domain.useCase.GetAllLocalPostUseCase
@@ -28,7 +29,8 @@ object LocalModule {
             context.applicationContext,
             LocalDatabase::class.java,
             BuildConfig.DB_NAME
-        ).build()
+        ).addMigrations(Migrations.MIGRATION_1_2)
+        .build()
     }
     @Provides
     @Singleton

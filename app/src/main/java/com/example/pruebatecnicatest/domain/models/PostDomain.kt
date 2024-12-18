@@ -4,5 +4,6 @@ data class PostDomain(
     val id: String,
     val body: String,
     val title: String,
-    val userId: String
+    val userId: String,
+    var isSave: Boolean
 )

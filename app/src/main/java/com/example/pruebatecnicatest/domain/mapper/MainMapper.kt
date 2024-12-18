@@ -10,7 +10,8 @@ object MainMapper {
             id = id.toString(),
             body = body,
             title = title,
-            userId = userId.toString()
+            userId = userId.toString(),
+            isSave = false
         )
     }
 
@@ -29,7 +30,8 @@ object MainMapper {
             id = id,
             body = body,
             title = title,
-            userId = userId
+            userId = userId,
+            isSave = isSave == 1
         )
     }
 
@@ -38,7 +40,8 @@ object MainMapper {
             id = id,
             body = body,
             title = title,
-            userId = userId
+            userId = userId,
+            isSave = if(isSave) 1 else 0
         )
     }
 }

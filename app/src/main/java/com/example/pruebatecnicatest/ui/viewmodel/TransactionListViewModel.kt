@@ -53,13 +53,6 @@ class TransactionViewModel @Inject constructor(
             when (val fetchedTransactions = getAllPostUseCase.getAllPost()) {
                 is WrapperResponse.Success -> {
                     _posts.value = fetchedTransactions.data ?: listOf()
-                    /** Update local transactions
-                    if(fetchedTransactions.data != _localPosts.value){
-                        fetchedTransactions.data?.map {
-                            savePost(it)
-                        }
-                    }
-                    */
                     _showLoading.value = false
                 }
 

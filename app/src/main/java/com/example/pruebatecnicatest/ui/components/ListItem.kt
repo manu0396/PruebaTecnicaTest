@@ -47,7 +47,8 @@ fun TransactionItemPreview() {
         id = "1",
         body = "This is a sample body for the post.",
         title = "Sample Title",
-        userId = "123"
+        userId = "123",
+        isSave = false
     )
     TransactionItem(
         modifier = Modifier.padding(16.dp),

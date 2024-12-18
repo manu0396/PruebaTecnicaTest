@@ -41,6 +41,7 @@ fun TransactionListScreen(
 ) {
     val context = LocalContext.current
     val transactions by viewModel.posts.collectAsState(emptyList())
+
     val showLoading by viewModel.showLoading.collectAsState()
     val showError by viewModel.showError.collectAsState()
     val errorMessage by viewModel.errorMessage.collectAsState()
@@ -89,7 +90,7 @@ fun TransactionListScreen(
                         .fillMaxWidth()
                         .combinedClickable(
                             onClick = {},
-                            onLongClick = { navController.navigate("transactions/${transactions[transaction].id.toInt()}") }
+                            onLongClick = { navController.navigate("transactions/${transactions[transaction].isSave}/${transactions[transaction].id.toInt()}") }
                         ),
                     postDomain = transactions[transaction]
                 )

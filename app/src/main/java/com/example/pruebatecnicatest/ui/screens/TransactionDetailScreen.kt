@@ -41,10 +41,11 @@ import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
 fun TransactionDetailScreen(
     navController: NavController,
     viewModel: TransactionViewModel,
+    isSave: Boolean,
     id: String
 ) {
     val context = LocalContext.current
-    val transactions by viewModel.posts.collectAsState()
+    val transactions by if(isSave) viewModel.localPosts.collectAsState() else viewModel.posts.collectAsState()
 
     val postDomain = transactions.find {
         it.id == id
@@ -78,26 +79,28 @@ fun TransactionDetailScreen(
             Text(text = "Body: ${postDomain?.body}", style = MaterialTheme.typography.bodyMedium)
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = "User ID: ${postDomain?.userId}", style = MaterialTheme.typography.bodyMedium)
-            Box(
-                modifier = Modifier
-                    .padding(end = 16.dp, bottom = 16.dp)
-                    .fillMaxSize(),
-                contentAlignment = Alignment.BottomCenter
-            ){
-                FloatingActionButton(
-                    modifier = Modifier.fillMaxWidth(),
-                    onClick = {
-                        if (postDomain != null) {
-                            viewModel.savePost(postDomain)
-                            Toast.makeText(context, "Post guardado correctamente", Toast.LENGTH_LONG).show()
-                        }
-                    },
-                    shape = RoundedCornerShape(10),
-                    containerColor = Color.Blue,
-                    contentColor = Color.White,
-                    elevation = FloatingActionButtonDefaults.elevation(10.dp)
-                ) {
-                    Text(stringResource(R.string.save))
+            if(!isSave){
+                Box(
+                    modifier = Modifier
+                        .padding(end = 16.dp, bottom = 16.dp)
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.BottomCenter
+                ){
+                    FloatingActionButton(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = {
+                            if (postDomain != null) {
+                                viewModel.savePost(postDomain)
+                                Toast.makeText(context, "Post guardado correctamente", Toast.LENGTH_LONG).show()
+                            }
+                        },
+                        shape = RoundedCornerShape(10),
+                        containerColor = Color.Blue,
+                        contentColor = Color.White,
+                        elevation = FloatingActionButtonDefaults.elevation(10.dp)
+                    ) {
+                        Text(stringResource(R.string.save))
+                    }
                 }
             }
         }

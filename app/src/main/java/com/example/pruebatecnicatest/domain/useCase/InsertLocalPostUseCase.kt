@@ -11,6 +11,7 @@ class InsertLocalPostUseCase @Inject constructor(
 ) {
     suspend fun insert(data:PostDomain): WrapperResponse<Unit>{
         val resp = try {
+            data.isSave = true
             localRepository.insertLocalTransaction(data.toData())
         }catch (e:Exception){
             return WrapperResponse.Error(e.message ?: "Se ha producido un error")

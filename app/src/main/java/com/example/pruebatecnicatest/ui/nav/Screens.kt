@@ -11,7 +11,7 @@ sealed class Screens(val route: String) {
 
     object Login: Screens("login")
 
-    object DetailTransaction : Screens("transactions/{id}")
+    object DetailTransaction : Screens("transactions/{saved}/{id}")
 
     object SavePost: Screens("savePost")
 

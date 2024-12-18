@@ -1,6 +1,5 @@
 package com.example.pruebatecnicatest.ui.nav
 
-import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -47,9 +46,11 @@ fun AppNavigator() {
                 arguments = listOf(navArgument("id") { type = NavType.StringType})
             ){ navBackStackEntry ->
                 val id = navBackStackEntry.arguments?.getString("id") ?: throw Exception("Missing id")
+                val isSave = navBackStackEntry.arguments?.getString("saved")
                 TransactionDetailScreen(
                     navController = navController,
                     id = id,
+                    isSave = isSave == "true",
                     viewModel = navBackStackEntry.transactionListViewModel(navController)
                 )
             }

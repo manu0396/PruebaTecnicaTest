@@ -10,5 +10,6 @@ data class PostData (
     @PrimaryKey(autoGenerate = false) val id: String,
     @ColumnInfo(name = "body") val body: String,
     @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "userId") val userId: String
+    @ColumnInfo(name = "userId") val userId: String,
+    @ColumnInfo(name = "isSave") val isSave: Int
 )

@@ -90,7 +90,7 @@ fun SavePostsScreen (
                         .fillMaxWidth()
                         .combinedClickable(
                             onClick = {},
-                            onLongClick = { navController.navigate("transactions/${transactions[transaction].id.toInt()}") }
+                            onLongClick = { navController.navigate("transactions/${transactions[transaction].isSave}/${transactions[transaction].id.toInt()}") }
                         ),
                     postDomain = transactions[transaction]
                 )
