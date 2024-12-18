@@ -27,7 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.pruebatecnicatest.R
-import com.example.pruebatecnicatest.ui.animations.SimpleAlertDialog
+import com.example.pruebatecnicatest.ui.components.SimpleAlertDialog
 import com.example.pruebatecnicatest.ui.animations.TripleOrbitLoadingAnimation
 import com.example.pruebatecnicatest.ui.components.BottomNavigationBar
 import com.example.pruebatecnicatest.ui.components.TransactionItem

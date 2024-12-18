@@ -1,4 +1,4 @@
-package com.example.pruebatecnicatest.ui.animations
+package com.example.pruebatecnicatest.ui.components
 
 import android.content.Context
 import androidx.compose.material3.AlertDialog
