@@ -33,7 +33,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.pruebatecnicatest.R
+import com.example.pruebatecnicatest.ui.animations.TripleOrbitLoadingAnimation
 import com.example.pruebatecnicatest.ui.components.BottomNavigationBar
+import com.example.pruebatecnicatest.ui.components.SimpleAlertDialog
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,6 +48,10 @@ fun TransactionDetailScreen(
 ) {
     val context = LocalContext.current
     val transactions by if(isSave) viewModel.localPosts.collectAsState() else viewModel.posts.collectAsState()
+    val isLoading by viewModel.showLoading.collectAsState()
+    val errorMessage by viewModel.errorMessage.collectAsState()
+    val showError by viewModel.showError.collectAsState()
+
 
     val postDomain = transactions.find {
         it.id == id
@@ -67,6 +73,20 @@ fun TransactionDetailScreen(
         },
         contentWindowInsets = WindowInsets(16.dp)
     ) { paddingValues ->
+        if(isLoading){
+            TripleOrbitLoadingAnimation(
+                modifier = Modifier.fillMaxSize(0.5f)
+            )
+        }
+        SimpleAlertDialog(
+            context = context,
+            show = showError,
+            title = stringResource(R.string.error),
+            text = errorMessage,
+            onConfirm = viewModel::onConfirm,
+            onDismiss = viewModel::onDismiss,
+            elevation = 10
+        )
         Column(
             modifier = Modifier
                 .fillMaxSize()

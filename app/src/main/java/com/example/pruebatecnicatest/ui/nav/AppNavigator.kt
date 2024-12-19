@@ -27,6 +27,7 @@ fun AppNavigator() {
         navigation(startDestination = Screens.Login.route, route = Screens.Auth.route) {
             composable(Screens.Login.route) { navBackStackEntry ->
                 LoginScreen(
+                    viewModel = navBackStackEntry.transactionListViewModel(navController),
                     onLoginSuccess = {
                         navController.navigate("transactions")
                     }

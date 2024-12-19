@@ -37,6 +37,7 @@ import androidx.navigation.NavController
 import com.example.pruebatecnicatest.R
 import com.example.pruebatecnicatest.ui.animations.TripleOrbitLoadingAnimation
 import com.example.pruebatecnicatest.ui.components.BottomNavigationBar
+import com.example.pruebatecnicatest.ui.components.SimpleAlertDialog
 import com.example.pruebatecnicatest.ui.nav.Screens
 import com.example.pruebatecnicatest.ui.theme.PruebaTecnicaTestTheme
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
@@ -50,6 +51,9 @@ fun SettingsScreen(
 ) {
     val showLoading by viewModel.showLoading.collectAsState()
     val context = LocalContext.current
+    val errorMessage by viewModel.errorMessage.collectAsState()
+    val showError by viewModel.showError.collectAsState()
+
     PruebaTecnicaTestTheme {
         Scaffold(
             topBar = {
@@ -65,9 +69,20 @@ fun SettingsScreen(
             bottomBar = { BottomNavigationBar(navController) },
             contentWindowInsets = WindowInsets(16.dp)
         ) { paddingValues ->
-            if (showLoading) {
-                TripleOrbitLoadingAnimation()
+            if(showLoading){
+                TripleOrbitLoadingAnimation(
+                    modifier = Modifier.fillMaxSize(0.5f)
+                )
             }
+            SimpleAlertDialog(
+                context = context,
+                show = showError,
+                title = stringResource(R.string.error),
+                text = errorMessage,
+                onConfirm = viewModel::onConfirm,
+                onDismiss = viewModel::onDismiss,
+                elevation = 10
+            )
             Column(
                 modifier = Modifier
                     .padding(paddingValues)
