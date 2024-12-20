@@ -10,16 +10,13 @@ import com.example.pruebatecnicatest.domain.useCase.GetLocalPostByIdUseCase
 import com.example.pruebatecnicatest.domain.useCase.InsertLocalPostUseCase
 import com.example.pruebatecnicatest.domain.useCase.UpdateLocalPostUseCase
 import com.example.pruebatecnicatest.utils.WrapperResponse
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class TransactionViewModel @Inject constructor(
+class TransactionViewModel (
     private val getAllPostUseCase: GetAllPostUseCase,
     private val insertLocalPostUseCase: InsertLocalPostUseCase,
     private val deleteLocalPostUseCase: DeleteLocalPostUseCase,

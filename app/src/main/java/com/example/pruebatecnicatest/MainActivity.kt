@@ -18,7 +18,6 @@ import com.example.pruebatecnicatest.ui.theme.PruebaTecnicaTestTheme
 import com.google.firebase.FirebaseApp
 import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

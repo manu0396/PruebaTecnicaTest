@@ -2,7 +2,6 @@ package com.example.pruebatecnicatest.ui.nav
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavType
@@ -19,6 +18,7 @@ import com.example.pruebatecnicatest.ui.screens.SettingsScreen
 import com.example.pruebatecnicatest.ui.screens.TransactionDetailScreen
 import com.example.pruebatecnicatest.ui.screens.TransactionListScreen
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun AppNavigator() {
@@ -87,9 +87,13 @@ fun AppNavigator() {
  */
 @Composable
 fun NavBackStackEntry.transactionListViewModel(navController: NavController): TransactionViewModel {
-    val navGraphRoute = destination.parent?.route ?: return hiltViewModel()
+    val navGraphRoute = destination.parent?.route ?: return koinViewModel()
+
+    // Retrieve the parent NavBackStackEntry
     val parentEntry = remember(this) {
         navController.getBackStackEntry(navGraphRoute)
     }
-    return hiltViewModel(parentEntry)
+
+    // Use the parentEntry as the owner for koinViewModel
+    return koinViewModel(viewModelStoreOwner = parentEntry)
 }

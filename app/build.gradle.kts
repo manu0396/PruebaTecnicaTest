@@ -22,6 +22,12 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        // Other configurations
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments["room.schemaLocation"] = "$projectDir/schemas"
+            }
+        }
 
         buildConfigField("String", "API_URL", "\"https://jsonplaceholder.typicode.com/\"")
         buildConfigField("String", "DB_NAME", "\"posts\"")
@@ -82,6 +88,7 @@ dependencies {
     //Room
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.testing)
     ksp(libs.androidx.room.compiler)
 
     //Retrofit
@@ -119,6 +126,16 @@ dependencies {
     implementation(libs.androidx.camera.camera2)
     implementation(libs.barcode.scanning)
 
+    //ktor
+    implementation(libs.ktor.client.client)
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.serialization)
+    implementation(libs.ktor.client.cio)
+
+    //Koin
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

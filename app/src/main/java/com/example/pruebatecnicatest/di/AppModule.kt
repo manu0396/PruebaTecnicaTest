@@ -1,46 +1,52 @@
 package com.example.pruebatecnicatest.di
 
-import com.example.pruebatecnicatest.BuildConfig.API_URL
 import com.example.pruebatecnicatest.data.remote.ApiService
 import com.example.pruebatecnicatest.data.remote.repository.RemoteRepository
+import com.example.pruebatecnicatest.domain.useCase.DeleteLocalPostUseCase
+import com.example.pruebatecnicatest.domain.useCase.GetAllLocalPostUseCase
 import com.example.pruebatecnicatest.domain.useCase.GetAllPostUseCase
+import com.example.pruebatecnicatest.domain.useCase.GetLocalPostByIdUseCase
+import com.example.pruebatecnicatest.domain.useCase.InsertLocalPostUseCase
+import com.example.pruebatecnicatest.domain.useCase.UpdateLocalPostUseCase
+import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
 import com.google.firebase.auth.FirebaseAuth
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import io.ktor.client.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.serialization.gson.*
+import org.koin.core.module.dsl.viewModel
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-object AppModule {
-    @Provides
-    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
-
-    @Provides
-    fun provideApiService(): ApiService = Retrofit.Builder()
-        .baseUrl(API_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(
-            OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                // Set the desired logging level: BASIC, HEADERS, or BODY
-                level = HttpLoggingInterceptor.Level.BODY
-            }) // Add logging interceptor
-            .build())
-        .build()
-        .create(ApiService::class.java)
-
-    @Provides
-    fun providePostRepository(): RemoteRepository{
-        return RemoteRepository(provideApiService())
+val AppModule = module {
+    single {
+        HttpClient(CIO) {
+            install(ContentNegotiation) {
+                gson()
+            }
+        }
     }
 
-    @Provides
-    fun provideGetAllPostUseCase(): GetAllPostUseCase{
-        return GetAllPostUseCase(providePostRepository())
+    single { FirebaseAuth.getInstance() }
+
+    single { ApiService(get())}
+
+    single { RemoteRepository(get()) }
+
+    single { GetAllPostUseCase(get()) }
+    single { InsertLocalPostUseCase(get()) }
+    single { DeleteLocalPostUseCase(get()) }
+    single { UpdateLocalPostUseCase(get()) }
+    single { GetLocalPostByIdUseCase(get()) }
+    single { GetAllLocalPostUseCase(get()) }
+
+    viewModel {
+        TransactionViewModel(
+            getAllPostUseCase = get(),
+            insertLocalPostUseCase = get(),
+            deleteLocalPostUseCase = get(),
+            updateLocalPostUseCase = get(),
+            getLocalPostByIdUseCase = get(),
+            getAllLocalPostUseCase = get()
+        )
     }
 }

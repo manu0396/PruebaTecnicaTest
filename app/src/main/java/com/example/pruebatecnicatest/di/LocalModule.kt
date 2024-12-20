@@ -17,60 +17,54 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
-object LocalModule {
-    @Provides
-    @Singleton
-    fun providesLocalDatabase(@ApplicationContext context: Context):LocalDatabase{
-        return Room.databaseBuilder(
-            context.applicationContext,
+val LocalModule = module {
+
+    single {
+        Room.databaseBuilder(
+            androidContext(),
             LocalDatabase::class.java,
             BuildConfig.DB_NAME
         ).addMigrations(Migrations.MIGRATION_1_2)
-        .build()
-    }
-    @Provides
-    @Singleton
-    fun providesDao(localDatabase: LocalDatabase):PostDao{
-        return localDatabase.dao()
+            .build()
     }
 
-    @Provides
-    @Singleton
-    fun providesLocalRepository(localDatabase: LocalDatabase):LocalRepository{
-        return LocalRepository(localDatabase)
+    single {
+        val localDatabase: LocalDatabase = get()
+        localDatabase.dao()
     }
 
-    @Provides
-    @Singleton
-    fun providesInsertLocalPostUseCase(localRepository: LocalRepository): InsertLocalPostUseCase{
-        return InsertLocalPostUseCase(localRepository)
+    single {
+        val localDatabase:LocalDatabase = get()
+        LocalRepository(localDatabase)
     }
 
-    @Provides
-    @Singleton
-    fun providesGetAllLocalPostUseCase(localRepository: LocalRepository):GetAllLocalPostUseCase{
-        return GetAllLocalPostUseCase(localRepository)
+    // Provide Use Cases
+    single {
+        val localRepository: LocalRepository = get()
+        InsertLocalPostUseCase(localRepository)
     }
 
-    @Provides
-    @Singleton
-    fun providesGetPostByIdUseCase(localRepository: LocalRepository):GetLocalPostByIdUseCase{
-        return GetLocalPostByIdUseCase(localRepository)
+    single {
+        val localRepository: LocalRepository = get()
+        GetAllLocalPostUseCase(localRepository)
     }
 
-    @Provides
-    @Singleton
-    fun providesDeleteLocalPostUseCase(localRepository: LocalRepository): DeleteLocalPostUseCase{
-        return DeleteLocalPostUseCase(localRepository)
+    single {
+        val localRepository: LocalRepository = get()
+        GetLocalPostByIdUseCase(localRepository)
     }
 
-    @Provides
-    @Singleton
-    fun providesUpdateLocalPostUseCase(localRepository: LocalRepository): UpdateLocalPostUseCase{
-        return UpdateLocalPostUseCase(localRepository)
+    single {
+        val localRepository: LocalRepository = get()
+        DeleteLocalPostUseCase(localRepository)
+    }
+
+    single {
+        val localRepository: LocalRepository = get()
+        UpdateLocalPostUseCase(localRepository)
     }
 }
