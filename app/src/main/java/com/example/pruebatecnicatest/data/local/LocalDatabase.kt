@@ -9,7 +9,7 @@ import com.example.pruebatecnicatest.data.local.models.PostData
         PostData::class
     ],
     version = 2,
-    exportSchema = false
+    exportSchema = true
 )
 abstract class LocalDatabase: RoomDatabase() {
     abstract fun dao(): PostDao
