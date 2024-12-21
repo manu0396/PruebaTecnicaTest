@@ -4,7 +4,7 @@ import com.example.pruebatecnicatest.data.local.LocalDatabase
 import com.example.pruebatecnicatest.data.local.models.PostData
 import javax.inject.Inject
 
-class LocalRepository @Inject constructor(
+class LocalRepository (
     private val localDatabase: LocalDatabase
 ) {
     suspend fun insertLocalTransaction(data: PostData) {

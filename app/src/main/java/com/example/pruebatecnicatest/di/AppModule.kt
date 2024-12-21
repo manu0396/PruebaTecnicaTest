@@ -9,11 +9,15 @@ import com.example.pruebatecnicatest.domain.useCase.GetLocalPostByIdUseCase
 import com.example.pruebatecnicatest.domain.useCase.InsertLocalPostUseCase
 import com.example.pruebatecnicatest.domain.useCase.UpdateLocalPostUseCase
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
+
 import com.google.firebase.auth.FirebaseAuth
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.serialization.gson.*
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
@@ -21,7 +25,15 @@ val AppModule = module {
     single {
         HttpClient(CIO) {
             install(ContentNegotiation) {
-                gson()
+                json(Json {
+                    prettyPrint = true
+                    isLenient = true
+                    ignoreUnknownKeys = true
+                })
+            }
+            install(Logging){
+                level = LogLevel.BODY // Adjust log level as needed (ALL, HEADERS, BODY, INFO, etc.)
+                logger = Logger.DEFAULT
             }
         }
     }

@@ -27,6 +27,7 @@ camera = "1.4.1"
 barcode = "17.3.0"
 ktor = "3.0.0"
 koin = "4.0.0"
+slf4j = "2.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -90,6 +91,10 @@ ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref =
 ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
 ktor-client-client = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-serialization = { group = "io.ktor", name = "ktor-serialization-gson", version.ref = "ktor" }
+ktor-serialization-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor"}
+ktor-client-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor"}
+ktor-slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4j"}
+ktor-slf4j-simple = { group = "org.slf4j", name = "slf4j-simple", version.ref = "slf4j"}
 
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
