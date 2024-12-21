@@ -7,7 +7,7 @@ import com.example.pruebatecnicatest.domain.models.PostDomain
 import com.example.pruebatecnicatest.utils.WrapperResponse
 import javax.inject.Inject
 
-class GetAllLocalPostUseCase @Inject constructor(
+class GetAllLocalPostUseCase (
     private val localRepository: LocalRepository
 ) {
     suspend fun getAllLocalPost(): WrapperResponse<List<PostDomain>>{
@@ -17,34 +17,6 @@ class GetAllLocalPostUseCase @Inject constructor(
             }
         }catch (e:Exception){
             return WrapperResponse.Error(e.message ?: "Se ha producido un error")
-        }
-        return WrapperResponse.Success(resp)
-    }
-
-    //TODO: Separate into individuals usecases
-    suspend fun getPostById(id: String):WrapperResponse<PostDomain>{
-        val resp = try {
-            localRepository.getLocalTransactionById(id).toDomain()
-        }catch (e:Exception){
-            return WrapperResponse.Error(e.message ?: "Se ha producido un error")
-        }
-        return  WrapperResponse.Success(resp)
-    }
-
-    suspend fun delete(data: PostDomain): WrapperResponse<Int>{
-        val resp = try {
-            localRepository.deleteLocalPost(data.toData())
-        }catch (e:Exception){
-            return WrapperResponse.Error(e.message ?: "Se ha producido un error")
-        }
-        return WrapperResponse.Success(resp)
-    }
-
-    suspend fun update(data: PostDomain): WrapperResponse<Int>{
-        val resp = try {
-            localRepository.updateLocalPost(data.toData())
-        }catch (e:Exception){
-            return  WrapperResponse.Error(e.message ?: "Se ha producido un error")
         }
         return WrapperResponse.Success(resp)
     }

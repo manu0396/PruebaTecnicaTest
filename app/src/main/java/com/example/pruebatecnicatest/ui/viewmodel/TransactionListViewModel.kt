@@ -63,6 +63,39 @@ class TransactionViewModel (
         }
     }
 
+    fun savePostAfterPayment(postDomain: PostDomain?, isPaymentSuccessful: Boolean) {
+        if (isPaymentSuccessful) {
+            _showLoading.value = true
+            viewModelScope.launch(Dispatchers.IO) {
+                when (val resp = postDomain?.let { insertLocalPostUseCase.insert(it) }) {
+                    is WrapperResponse.Success -> {
+                        setSelectPost(postDomain)
+                        savePost(postDomain)
+                        _showLoading.value = false
+                    }
+                    is WrapperResponse.Error -> {
+                        _showError.value = true
+                        _showLoading.value = false
+                        _errorMessage.value = resp.message ?: "Se ha producido un error"
+                    }
+
+                    null -> {
+                        _showError.value = true
+                        _showLoading.value = false
+                        _errorMessage.value = "Se ha producido un error desconocido"
+                    }
+                }
+            }
+        } else {
+            _errorMessage.value = "Payment failed. Post not saved."
+            _showError.value = true
+        }
+    }
+
+    private fun setSelectPost(post:PostDomain) {
+        _localPost.value = post
+    }
+
     fun savePost(data: PostDomain){
         _showLoading.value = true
         viewModelScope.launch(Dispatchers.IO) {

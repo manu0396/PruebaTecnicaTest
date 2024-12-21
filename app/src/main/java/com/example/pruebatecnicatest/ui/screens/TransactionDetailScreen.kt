@@ -1,5 +1,6 @@
 package com.example.pruebatecnicatest.ui.screens
 
+import android.app.Activity
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,6 +38,7 @@ import com.example.pruebatecnicatest.ui.animations.TripleOrbitLoadingAnimation
 import com.example.pruebatecnicatest.ui.components.BottomNavigationBar
 import com.example.pruebatecnicatest.ui.components.SimpleAlertDialog
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
+import com.example.pruebatecnicatest.utils.GooglePayHelper
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,6 +58,8 @@ fun TransactionDetailScreen(
     val postDomain = transactions.find {
         it.id == id
     }
+
+    val googlePayHelper = GooglePayHelper(context as Activity)
 
     Scaffold(
         topBar = {
@@ -110,8 +114,7 @@ fun TransactionDetailScreen(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
                             if (postDomain != null) {
-                                viewModel.savePost(postDomain)
-                                Toast.makeText(context, "Post guardado correctamente", Toast.LENGTH_LONG).show()
+                                googlePayHelper.startGooglePayPayment(context)
                             }
                         },
                         shape = RoundedCornerShape(10),

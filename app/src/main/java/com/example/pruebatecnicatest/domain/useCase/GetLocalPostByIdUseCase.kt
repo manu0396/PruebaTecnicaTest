@@ -6,7 +6,7 @@ import com.example.pruebatecnicatest.domain.models.PostDomain
 import com.example.pruebatecnicatest.utils.WrapperResponse
 import javax.inject.Inject
 
-class GetLocalPostByIdUseCase @Inject constructor(
+class GetLocalPostByIdUseCase (
     private val localRepository: LocalRepository
 ){
     suspend fun getLocalPostById(id: String): WrapperResponse<PostDomain>{

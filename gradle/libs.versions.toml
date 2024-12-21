@@ -28,6 +28,7 @@ barcode = "17.3.0"
 ktor = "3.0.0"
 koin = "4.0.0"
 slf4j = "2.0.0"
+googlePay = "19.4.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -99,6 +100,8 @@ ktor-slf4j-simple = { group = "org.slf4j", name = "slf4j-simple", version.ref = 
 koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
 koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
+
+google-pay = { module = "com.google.android.gms:play-services-wallet", version.ref = "googlePay"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

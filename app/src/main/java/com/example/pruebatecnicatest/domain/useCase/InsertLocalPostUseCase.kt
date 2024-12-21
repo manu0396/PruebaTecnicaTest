@@ -6,7 +6,7 @@ import com.example.pruebatecnicatest.domain.models.PostDomain
 import com.example.pruebatecnicatest.utils.WrapperResponse
 import javax.inject.Inject
 
-class InsertLocalPostUseCase @Inject constructor(
+class InsertLocalPostUseCase (
     private val localRepository: LocalRepository
 ) {
     suspend fun insert(data:PostDomain): WrapperResponse<Unit>{

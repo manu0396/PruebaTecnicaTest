@@ -21,6 +21,9 @@
         <meta-data
             android:name="androidx.camera.cameraX.provider"
             android:value="androidx.camera.camera2.Camera2Config"/>
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

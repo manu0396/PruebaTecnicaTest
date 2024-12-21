@@ -6,7 +6,7 @@ import com.example.pruebatecnicatest.domain.models.PostDomain
 import com.example.pruebatecnicatest.utils.WrapperResponse
 import javax.inject.Inject
 
-class DeleteLocalPostUseCase @Inject constructor(
+class DeleteLocalPostUseCase (
     private val localRepository: LocalRepository
 ) {
 
