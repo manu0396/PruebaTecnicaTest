@@ -50,7 +50,7 @@ fun LoginScreen(
     Scaffold(
         contentWindowInsets = WindowInsets(16.dp)
     ) { paddingValues ->
-        if(isLoading){
+        if (isLoading) {
             TripleOrbitLoadingAnimation(
                 modifier = Modifier.fillMaxSize(0.5f)
             )
@@ -87,15 +87,19 @@ fun LoginScreen(
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = {
-                auth.signInWithEmailAndPassword(email.value, password.value)
-                    .addOnCompleteListener { task ->
-                        if (task.isSuccessful) {
-                            onLoginSuccess()
-                        } else {
-                            Toast.makeText(context, "Authentication Failed", Toast.LENGTH_SHORT)
-                                .show()
+                try {
+                    auth.signInWithEmailAndPassword(email.value, password.value)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                onLoginSuccess()
+                            } else {
+                                Toast.makeText(context, "Authentication Failed", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
                         }
-                    }
+                } catch (e: Exception) {
+                    viewModel.showError(e.message ?: "Se ha producido un error en el login")
+                }
             }) {
                 Text("Login")
             }

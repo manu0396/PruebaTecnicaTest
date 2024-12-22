@@ -185,4 +185,9 @@ class TransactionViewModel (
     fun onConfirm(){
         _showError.value = false
     }
+
+    fun showError(error: String) {
+        _showError.value = true
+        _errorMessage.value = error
+    }
 }

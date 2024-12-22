@@ -1,6 +1,8 @@
 package com.example.pruebatecnicatest.ui.screens
 
 import android.app.Activity
+import android.os.Looper
+import android.provider.Settings.Global
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -32,6 +34,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -46,8 +49,13 @@ import com.example.pruebatecnicatest.ui.components.BottomNavigationBar
 import com.example.pruebatecnicatest.ui.components.SimpleAlertDialog
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
 import com.example.pruebatecnicatest.utils.GooglePayHelper
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, DelicateCoroutinesApi::class)
 @Composable
 fun TransactionDetailScreen(
     navController: NavController,
@@ -119,8 +127,21 @@ fun TransactionDetailScreen(
                 ) {
                     Button(
                         onClick = {
-                            if (postDomain != null) {
-                                googlePayHelper.startGooglePayPayment(context)
+                            GlobalScope.launch(Dispatchers.IO) {
+                                Looper.prepare()
+                                if (postDomain != null) {
+                                    googlePayHelper.startGooglePayPayment(context)
+                                    // Simulate the payment is correctly until have an entrerprise account
+                                    delay(10000L)
+                                    viewModel.savePost(postDomain)
+                                    GlobalScope.launch(Dispatchers.Main) {
+                                        Toast.makeText(
+                                            context,
+                                            "Payment successful. Post saved.",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                    }
+                                }
                             }
                         },
                         modifier = Modifier
