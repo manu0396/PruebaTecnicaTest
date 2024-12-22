@@ -5,7 +5,6 @@ import android.util.DisplayMetrics
 import com.google.android.gms.wallet.WalletConstants
 
 object Constants {
-    const val DATABASE_NAME="heros"
     /**
      * This file contains several constants you must edit before proceeding.
      * Please take a look at PaymentsUtil.java to see where the constants are used and to potentially
