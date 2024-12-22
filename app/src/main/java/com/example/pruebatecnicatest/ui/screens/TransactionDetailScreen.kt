@@ -49,6 +49,7 @@ import com.example.pruebatecnicatest.ui.components.BottomNavigationBar
 import com.example.pruebatecnicatest.ui.components.SimpleAlertDialog
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
 import com.example.pruebatecnicatest.utils.GooglePayHelper
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -58,6 +59,7 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class, DelicateCoroutinesApi::class)
 @Composable
 fun TransactionDetailScreen(
+    scope:CoroutineScope,
     navController: NavController,
     viewModel: TransactionViewModel,
     isSave: Boolean,
@@ -127,14 +129,14 @@ fun TransactionDetailScreen(
                 ) {
                     Button(
                         onClick = {
-                            GlobalScope.launch(Dispatchers.IO) {
+                            scope.launch(Dispatchers.IO) {
                                 Looper.prepare()
                                 if (postDomain != null) {
                                     googlePayHelper.startGooglePayPayment(context)
                                     // Simulate the payment is correctly until have an entrerprise account
                                     delay(10000L)
                                     viewModel.savePost(postDomain)
-                                    GlobalScope.launch(Dispatchers.Main) {
+                                    scope.launch(Dispatchers.Main) {
                                         Toast.makeText(
                                             context,
                                             "Payment successful. Post saved.",

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.lifecycle.lifecycleScope
 import com.example.pruebatecnicatest.ui.nav.AppNavigator
 import com.example.pruebatecnicatest.ui.theme.PruebaTecnicaTestTheme
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             PruebaTecnicaTestTheme {
-                AppNavigator()
+                AppNavigator(lifecycleScope)
             }
         }
     }

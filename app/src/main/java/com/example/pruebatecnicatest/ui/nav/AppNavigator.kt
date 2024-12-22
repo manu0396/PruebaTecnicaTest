@@ -18,10 +18,11 @@ import com.example.pruebatecnicatest.ui.screens.SettingsScreen
 import com.example.pruebatecnicatest.ui.screens.TransactionDetailScreen
 import com.example.pruebatecnicatest.ui.screens.TransactionListScreen
 import com.example.pruebatecnicatest.ui.viewmodel.TransactionViewModel
+import kotlinx.coroutines.CoroutineScope
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun AppNavigator() {
+fun AppNavigator(scope:CoroutineScope) {
     val navController = rememberNavController()
     NavHost(navController, startDestination = Screens.Auth.route) {
         navigation(startDestination = Screens.Login.route, route = Screens.Auth.route) {
@@ -49,6 +50,7 @@ fun AppNavigator() {
                 val id = navBackStackEntry.arguments?.getString("id") ?: throw Exception("Missing id")
                 val isSave = navBackStackEntry.arguments?.getString("saved")
                 TransactionDetailScreen(
+                    scope = scope,
                     navController = navController,
                     id = id,
                     isSave = isSave == "true",
