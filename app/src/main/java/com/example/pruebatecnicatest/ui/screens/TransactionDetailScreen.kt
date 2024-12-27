@@ -130,7 +130,6 @@ fun TransactionDetailScreen(
                     Button(
                         onClick = {
                             scope.launch(Dispatchers.IO) {
-                                Looper.prepare()
                                 if (postDomain != null) {
                                     googlePayHelper.startGooglePayPayment(context)
                                     // Simulate the payment is correctly until have an entrerprise account
